@@ -1,25 +1,29 @@
 /**
- * 
- * User: Luke Wilson
+ * Created for Storm Ideas
+ * User: Luke Wilson - luke.wilson@stormideas.com
  * Date: 9th Feb 2023
  * Time: 14:37
  * 
  * 13th Feb 2023
  * Version 1.1 - Added automatic table creation and field/columns creation
+ *
+ * 14th Feb 2023
+ * Version 1.2 - Added filter to remove any duplicate results before it populates the Airtable
  * 
  * TO DO:
  *  - Enable variable for number of results needed
  *  - Prefill "Format Type" and "Themes" with required tags
  */
 
-//  __     __      _______    _             _____                                  __  __ 
-//  \ \   / /     |__   __|  | |           / ____|                                /_ |/_ |
-//   \ \_/ /__  _   _| |_   _| |__   ___  | (___   ___ _ __ __ _ _ __   ___ _ __   | | | |
-//    \   / _ \| | | | | | | | '_ \ / _ \  \___ \ / __| '__/ _` | '_ \ / _ \ '__|  | | | |
-//     | | (_) | |_| | | |_| | |_) |  __/  ____) | (__| | | (_| | |_) |  __/ |     | |_| |
-//     |_|\___/ \__,_|_|\__,_|_.__/ \___| |_____/ \___|_|  \__,_| .__/ \___|_|     |_(_)_|
-//                                                              | |                       
-//                                                              |_|                       
+//  __     __      _______    _             _____                                  __   ___  
+//  \ \   / /     |__   __|  | |           / ____|                                /_ | |__ \ 
+//   \ \_/ /__  _   _| |_   _| |__   ___  | (___   ___ _ __ __ _ _ __   ___ _ __   | |    ) |
+//    \   / _ \| | | | | | | | '_ \ / _ \  \___ \ / __| '__/ _` | '_ \ / _ \ '__|  | |   / / 
+//     | | (_) | |_| | | |_| | |_) |  __/  ____) | (__| | | (_| | |_) |  __/ |     | |_ / /_ 
+//     |_|\___/ \__,_|_|\__,_|_.__/ \___| |_____/ \___|_|  \__,_| .__/ \___|_|     |_(_)____|
+//                                                              | |                          
+//                                                              |_|                          
+var scriptVersion = "1.2";
 
 //////////////////////////////////////
 ///////////// FUNCTIONS /////////////
@@ -193,8 +197,9 @@ const fieldDefinitions = [
 ////////////// INPUT FORM /////////////
 ///////////////////////////////////////
 
-output.markdown("# YouTube Data Scraper v1.1");
+output.markdown("# YouTube Data Scraper v" + scriptVersion);
 
+output.markdown(`User Guide: [How to use the YouTube Scraper extension](https://stormideas.atlassian.net/wiki/spaces/CP/pages/3724705808/How+to+use+the+YouTube+Scraper+extension)`)
 
 const addTableOrField = await input.buttonsAsync('Do you want to create a new table or add data to an existing table?', [
   { label: 'Create new table', value: 'table', variant: 'primary' },
@@ -242,7 +247,7 @@ let usePresets = await input.buttonsAsync(
 );
 
 //Predefine the variables etc
-var API_KEY = "[YOUR API KEY HERE]";
+var API_KEY = "AIzaSyC9PSla_H-crThb50B3vz_0nQkzsofTsuc"; //unit3video@gmail.com
 
 if (usePresets === 'preset_search' || usePresets === 'preset_video') {
   //Use current table
@@ -377,10 +382,28 @@ if (shouldContinue === 'yes') {
 
       //Merge both page results items to get first 150 results needed
       const apiResultItemsMerged = [...apiResult.items, ...apiResultNext.items, ...apiResultNextNext.items];
-      //console.log(apiResultItemsMerged)
+      //console.debug(apiResultItemsMerged)
+
+      //Filter out any duplicate results
+      const originalArray = apiResultItemsMerged;
+      const apiResultItemsMergedFiltered = [];
+      const encounteredIds = {};
+
+      var skippedDuplicate = 0;
+      for (const obj of originalArray) {
+        const id = obj.id.videoId;
+        if (!encounteredIds[id]) {
+          apiResultItemsMergedFiltered.push(obj);
+          encounteredIds[id] = true;
+        } else {
+          skippedDuplicate++;
+        }
+      }
+      //console.debug(apiResultItemsMergedFiltered)
 
       //Join it all back together for iteration...
-      apiResult['items'] = apiResultItemsMerged;
+      //apiResult['items'] = apiResultItemsMerged;
+      apiResult['items'] = apiResultItemsMergedFiltered;
     }
 
     //Loop results to extract data and create table rows
@@ -610,6 +633,7 @@ if (shouldContinue === 'yes') {
     output.markdown(`## Success!`);
     output.markdown(`## Results:`);
     output.markdown(`* ${imported} imported video data`);
+    output.markdown(`* ${skippedDuplicate} duplicate results skipped`);
     output.markdown(`* ${skipped} skipped playlists`);
     output.markdown(`* Skipped ${skippedVideo} removed/unavailable videos`);
 
