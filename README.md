@@ -7,7 +7,7 @@ Scrape YouTube data directly into an Airtable base
 
 __Date:__ February 13, 2023
 
-__Author:__ Katrina Davies
+__Author:__ Luke Wilson
 
 __Source:__ [Tango](https://app.tango.us/app/workflow/aaa9406c-0786-4818-a633-84f0cd5486e2?utm_source=markdown&utm_medium=markdown&utm_campaign=workflow%20export%20links)
 
