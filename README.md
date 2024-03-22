@@ -6,9 +6,7 @@
 
 ## 1. Go to an Airtable base you need import YouTube data to.
 
-If you haven't installed the extension, see this guide on how to do
-that: [**[Add the YouTube Scraper
-extension]{.underline}**](file:///C:/wiki/spaces/CO/pages/4046684174/Add+the+YouTube+Scraper+to+an+Airtable+base).
+If you haven't installed the extension, install the Scripting extension and copy the code from here into that.
 
 ## 2. Click on Extensions
 
@@ -25,10 +23,9 @@ these comes down to limitations on the API results.
 
 Google imposes a limit of 10,000 "units" per 24 hours on their API
 calls. Units are defined differently depending on what results you want.
-See this page for more details:
-[[https://stormideas.atlassian.net/wiki/x/UADt9Q]{.underline}](https://stormideas.atlassian.net/wiki/x/UADt9Q)
+See this page for more details: https://developers.google.com/youtube/v3/determine_quota_cost
 
-The [**[unofficial API]{.underline}**](https://yt.lemnoslife.com/) has
+The [**unofficial API**](https://yt.lemnoslife.com/) has
 no restrictions currently, though the author of the code says they may
 add a "future limitation per IP", so that's something to bear in mind.
 This API works based on an open-source model where it is powered by 2455
@@ -70,8 +67,7 @@ tables in the current base.
 
 -   **\"Scrape Specific Channel Data\"** -- this will return all results
     > from a YouTube channel, specified by its channel ID (e.g.:
-    > UCStzHveCf_orXJ-19kiOUog) and NOT a \@handle. For guidance, see
-    > [[https://stormideas.atlassian.net/l/cp/qoz5CWse]{.underline}](https://stormideas.atlassian.net/l/cp/qoz5CWse).
+    > UCStzHveCf_orXJ-19kiOUog) and NOT a \@handle.
 
 -   **\"Scrape a Predefined Video ID Field"** -- this option will
     > present you with options to select an existing table within the
@@ -87,8 +83,7 @@ tables in the current base.
 
 -   **\"Scrape Specific Channel\"** -- this will return all videos
     > uploaded to a YouTube channel, specified by its channel ID (e.g.:
-    > UCStzHveCf_orXJ-19kiOUog) and NOT a \@handle. For guidance, see
-    > [[https://stormideas.atlassian.net/l/cp/qoz5CWse]{.underline}](https://stormideas.atlassian.net/l/cp/qoz5CWse).
+    > UCStzHveCf_orXJ-19kiOUog) and NOT a \@handle.
 
 -   **\"Scrape a Predefined Channel ID Field"** -- this option will
     > present you with options to select an existing table within the
