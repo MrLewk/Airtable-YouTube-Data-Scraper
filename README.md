@@ -118,8 +118,7 @@ settings are and ask for the keywords you want to search for videos by.
 If you make a mistake and need to change some of the settings, you will
 need to stop the script and run it again to reset it.
 
-**Continue down to point [[number
-9]{.underline}](#9.-Starting-the-video-scraping) to continue.**
+**Continue down to [point number 12](#12-starting-the-video-or-channel-scraping)**
 
 ## 9. Scrape Single/Batch Videos option
 
@@ -146,8 +145,7 @@ list of IDs up to a maximum of **50**.
 If you make a mistake and need to change some of the settings, you will
 need to stop the script and run it again to reset it.
 
-**Continue down to point [[number
-9]{.underline}](#9.-Starting-the-video-scraping) to continue.**
+**Continue down to [point number 12](#12-starting-the-video-or-channel-scraping)**
 
 ## 10. Scrape a Channel option
 
@@ -180,8 +178,7 @@ channel names. To see how to get a channel ID, read this quick guide:
 If you make a mistake and need to change some of the settings, you will
 need to stop the script and run it again to reset it.
 
-**Continue down to point [[number
-9]{.underline}](#9.-Starting-the-video-scraping) to continue.**
+**Continue down to [point number 12](#12-starting-the-video-or-channel-scraping)**
 
 ## 11. Scrape a Predefined Video/Channel ID Field option
 
@@ -198,7 +195,7 @@ table and reference fields to grab existing data from.
 
 Clicking the "Next" button here will begin the video scraping.
 
-**Continue down to point to continue.**
+**Continue down to [point number 12](#12-starting-the-video-or-channel-scraping)**
 
 ## 12. Starting the Video or Channel Scraping
 
